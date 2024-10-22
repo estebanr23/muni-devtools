@@ -1,12 +1,11 @@
-import { Layout } from './layout/Layout'
+import { BrowserRouter } from 'react-router-dom'
+import { Routes } from './routes/Routes'
 
 const App = () => {
   return (
-    <Layout>
-      <h1 className='text-3xl font-bold underline'>
-        Hello world!
-      </h1>
-    </Layout>
+    <BrowserRouter>
+      <Routes />
+    </BrowserRouter>
   )
 }
 
