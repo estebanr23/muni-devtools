@@ -34,14 +34,14 @@ export const CardUI = ({ card, onEdit }: Props) => {
       <CardFooter className='flex justify-end gap-x-2'> {/* pb-4 */}
         <Button 
           type="button" 
-          className='border-none bg-transparent hover:bg-transparent hover:border-2 hover:border-slate-900 hover:scale-90 rounded-md size-10'
+          className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
           onClick={() => onEdit(card)}
         >
-          <Pencil className='text-slate-900'/>
+          <Pencil className='text-slate-900 dark:text-primary'/>
         </Button>
         <Button 
           type="button" 
-          className='border-none bg-transparent hover:bg-transparent hover:border-2 hover:border-slate-900 hover:scale-90 rounded-md size-10'>
+          className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'>
           <Trash className='text-red-500'/>
         </Button>
       </CardFooter>

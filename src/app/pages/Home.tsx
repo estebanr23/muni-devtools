@@ -6,6 +6,7 @@ import { ModalUI } from '../components/ModalUI'
 import { ICard } from '../interfaces'
 import { cards } from '../constants'
 import { ResourceForm } from '../forms/ResourceForm'
+import { Input } from '@/components/ui/input'
 
 export const Home = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -24,11 +25,21 @@ export const Home = () => {
   return (
     <div>
       <section className='mb-8'>
-        <h1 className='text-center font-semibold font text-4xl'>DevTools</h1>
+        <h1 className='text-center font-semibold font text-4xl'>Muni DevTools</h1>
 
-        <div className='flex mt-8'>
-          <div className='flex justify-center flex-1 mx-auto '>
-            <input type="text" className='w-full max-w-4xl border border-gray-300 rounded-xl p-2' placeholder='Buscar'/>
+        <div className='flex mt-8 sm:gap-x-4'>
+          <div className='flex justify-center flex-1 mx-auto'>
+            <div className='w-full max-w-4xl relative'>
+              <Input type="text" className='rounded-xl p-5' placeholder='Buscar recurso'/>
+              <ul className='dark:bg-black/90 bg-background max-h-80 absolute z-50 w-full top-11 rounded-b-xl border-x-2 border-b-2'>
+                <li className='px-5 py-2 border-b border-input hover:dark:hover:bg-slate-800'>Result 1</li>
+                <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 2</li>
+                <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 3</li>
+                <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 4</li>
+                <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 5</li>
+                <li className='px-5 py-2 border-t border-input hover:dark:hover:bg-slate-800'>Result 6</li>
+              </ul>
+            </div>
           </div>
 
           <div>
