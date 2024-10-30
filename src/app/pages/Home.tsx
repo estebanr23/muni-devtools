@@ -25,12 +25,18 @@ export const Home = () => {
   return (
     <div>
       <section className='mb-8'>
-        <h1 className='text-center font-semibold font text-4xl'>Muni DevTools</h1>
+        <h1 className='text-center font-semibold text-3xl sm:text-4xl'>Muni DevTools</h1>
 
-        <div className='flex mt-8 sm:gap-x-4'>
-          <div className='flex justify-center flex-1 mx-auto'>
-            <div className='w-full max-w-4xl relative'>
-              <Input type="text" className='rounded-xl p-5' placeholder='Buscar recurso'/>
+        <div className='flex flex-col md:flex-row items-center md:justify-center gap-4 mt-6'>
+          <div className='flex-1 w-full md:max-w-2xl relative'>
+            <Input 
+              type="text" 
+              className='w-full rounded-xl p-5 h-12' 
+              placeholder='Buscar recurso' 
+            />
+            
+            {/* Descomenta este bloque para la lista de resultados */}
+            {/* 
               <ul className='dark:bg-black/90 bg-background max-h-80 absolute z-50 w-full top-11 rounded-b-xl border-x-2 border-b-2'>
                 <li className='px-5 py-2 border-b border-input hover:dark:hover:bg-slate-800'>Result 1</li>
                 <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 2</li>
@@ -39,16 +45,19 @@ export const Home = () => {
                 <li className='px-5 py-2 border-y border-input hover:dark:hover:bg-slate-800'>Result 5</li>
                 <li className='px-5 py-2 border-t border-input hover:dark:hover:bg-slate-800'>Result 6</li>
               </ul>
-            </div>
+            */}
           </div>
 
-          <div>
-            <Button className='h-full rounded-xl' variant="outline" onClick={handleCreate}><Plus />Agregar</Button>
-          </div>
+          <Button 
+            className='w-full md:w-auto rounded-xl h-12' 
+            variant="outline" 
+            onClick={handleCreate}
+          >
+            <Plus /> Agregar
+          </Button>
         </div>
-
-
       </section>
+
 
       <section className='grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-6'>
         {
