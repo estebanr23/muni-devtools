@@ -19,7 +19,7 @@ interface Props {
 export const ModalUI = ({ isOpen, setIsOpen, title, children }: Props) => {
   return (
     <Dialog open={isOpen} onOpenChange={setIsOpen}>
-      <DialogContent className='p-8'>
+      <DialogContent className='p-8 w-auto max-w-6xl'>
         <DialogHeader>
           <DialogTitle>{title}</DialogTitle>
         </DialogHeader>
