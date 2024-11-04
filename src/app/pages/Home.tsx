@@ -5,7 +5,7 @@ import { useState } from 'react'
 import { ModalUI } from '../components/ModalUI'
 import { ICard } from '../interfaces'
 import { cards } from '../constants'
-import { ResourceForm } from '../forms/ResourceForm'
+import { Resource } from '../components/resources/Resource'
 import { Input } from '@/components/ui/input'
 
 export const Home = () => {
@@ -76,7 +76,7 @@ export const Home = () => {
         setIsOpen={setIsOpen}
         title={activeCard ? 'Editar recurso' : 'Agregar recurso'} 
       >
-        <ResourceForm />
+        <Resource />
       </ModalUI>
     </div>
   )

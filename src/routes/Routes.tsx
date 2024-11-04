@@ -11,7 +11,7 @@ enum Status {
 export const Routes = () => {
   const isAuthenticated = Status.AUTHENTICATED
 
-  const routes = useRoutes(Status.AUTHENTICATED === isAuthenticated ? PrivateRoute : PublicRoute)
+  const routes = useRoutes(Status.AUTHENTICATED !== isAuthenticated ? PrivateRoute : PublicRoute)
 
   return (
     <>

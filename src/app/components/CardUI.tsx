@@ -9,7 +9,8 @@ import {
 import { Link1Icon } from '@radix-ui/react-icons'
 import { ICard } from '../interfaces'
 import { Button } from '@/components/ui/button'
-import { Pencil, Trash } from 'lucide-react'
+import { Heart, Pencil, Trash } from 'lucide-react'
+import { BtnCopy } from '@/app/components/BtnCopy'
   
 interface Props {
   card: ICard
@@ -18,7 +19,9 @@ interface Props {
 
 export const CardUI = ({ card, onEdit }: Props) => {
   return (
-    <Card className='h-full hover:scale-105 transition hover:shadow-lg hover:cursor-pointer'>
+    <Card className='h-full hover:scale-105 transition hover:shadow-lg hover:cursor-pointer relative'>
+      <BtnCopy value={card.url}/>
+      
       <a href={card.url} target='_blank'>
         <CardContent className='p-0 '>
           <img className='w-full h-40 object-cover rounded-t-xl' src={card.image} alt={card.title} />
@@ -31,19 +34,28 @@ export const CardUI = ({ card, onEdit }: Props) => {
         </CardHeader>
       </a>
 
-      <CardFooter className='flex justify-end gap-x-2'> {/* pb-4 */}
+      <CardFooter className='flex justify-between'> 
         <Button 
           type="button" 
           className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
-          onClick={() => onEdit(card)}
         >
-          <Pencil className='text-slate-900 dark:text-primary'/>
+          <Heart className='text-slate-900 dark:text-primary'/>
         </Button>
-        <Button 
-          type="button" 
-          className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'>
-          <Trash className='text-red-500'/>
-        </Button>
+
+        <div className='flex justify-end gap-x-2'>
+          <Button 
+            type="button" 
+            className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
+            onClick={() => onEdit(card)}
+          >
+            <Pencil className='text-slate-900 dark:text-primary'/>
+          </Button>
+          <Button 
+            type="button" 
+            className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'>
+            <Trash className='text-red-500'/>
+          </Button>
+        </div>
       </CardFooter>
     </Card>
   )
