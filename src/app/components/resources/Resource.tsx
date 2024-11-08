@@ -1,28 +1,36 @@
+import { useState } from 'react'
 import { Link1Icon } from '@radix-ui/react-icons'
-import { Image, Save } from 'lucide-react'
+import { Image } from 'lucide-react'
 import { useLinkPreview } from '../../hooks/useLinkPreview'
-import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { Skeleton } from '@/components/ui/skeleton'
 import { AlertUI } from '../AlertUI'
-import { Textarea } from '@/components/ui/textarea'
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@radix-ui/react-select'
 import { ResourceForm } from '../../forms/ResourceForm'
 
+
 export const Resource = () => {
-  const { url, resource, isLoading, error, fetchData } = useLinkPreview()
+  const { url, resource, isLoading, error, fetchData, resetInput } = useLinkPreview()
+  const [manual, setManual] = useState<boolean>(false)
+
+  const handleManual =  () => {
+    setManual(true)
+    resetInput()
+  }
 
   return (
     <div className='max-w-6xl'>
-      <Input
-        name='url'
-        type='url'
-        placeholder="http://www.example.com.ar"
-        className="border border-gray-300 rounded-md p-2 mb-6 min-w-[768px]"
-        value={url}
-        onChange={e => fetchData(e.target.value)}
-      />
+      {
+        !manual &&
+        <Input
+          name='url'
+          type='url'
+          placeholder="http://www.example.com.ar"
+          className="border border-gray-300 rounded-md p-2 mb-6 min-w-[768px]"
+          value={url}
+          onChange={e => fetchData(e.target.value)}
+        />
+      }
         
       {
         (resource && !isLoading) &&
@@ -43,17 +51,29 @@ export const Resource = () => {
             </div>
               
             {/* Formulario */}
-            <ResourceForm />
+            <ResourceForm resource={resource} setManual={setManual} />
           </div>
       }
 
       { (!resource && isLoading) && <ResourceSkeleton /> }
 
+      {/* Mostrar error */}
       { error && <AlertUI message={error}/> }
+
+      {/* Carga Manual */}
+      { manual && <ResourceForm setManual={setManual} manual={manual} /> }
+
+      {
+        (!manual && !resource) &&
+        <div className='flex justify-end mt-4'>
+          <button className='bg-none border-none' onClick={handleManual}>
+            <span className='underline underline-offset-4 decoration-solid'>Cargar manual?</span>
+          </button>
+        </div>
+      }
     </div>
   )
 }
-
 
 const ResourceSkeleton = () => {
   return (

@@ -4,9 +4,24 @@ import { Button } from '@/components/ui/button'
 import logoCapitalDark from '@/assets/images/logo-capital-dark.png'
 import logoModo from '@/assets/images/logo-nodo.png'
 import { ReactTyped } from 'react-typed'
+import { SubmitHandler, useForm } from 'react-hook-form'
 
+interface LoginForm {
+  username: string
+  password: string
+}
 
 export const Login = () => {
+  const {
+    register, 
+    formState: { errors }, 
+    handleSubmit 
+  } = useForm<LoginForm>()
+
+  const onSubmit: SubmitHandler<LoginForm> = (data: LoginForm) => {
+    console.log(data)
+  }
+
   return (
     <div className="bg-gradient-to-br from-gray-900 to-black">
       <div className='flex flex-col container mx-auto min-h-screen px-10'>
@@ -16,9 +31,9 @@ export const Login = () => {
         </div>
 
         <div className="flex w-full flex-grow">
-          <div className="w-1/2 flex flex-col items-start justify-center border-r-[0.5px] border-slate-300 gap-y-4">
+          <div className="w-3/4 flex flex-col items-start justify-center border-r-[0.5px] border-slate-300 gap-y-4">
             <h1 
-              className="text-8xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-400
+              className="text-8xl font-semibold text-transparent bg-clip-text bg-gradient-to-r f  rom-gray-400
                via-blue-500 to-gray-900"
             >
               Muni
@@ -38,7 +53,7 @@ export const Login = () => {
             <h2 className="text-4xl font-semibold mb-2 text-white">Sign In</h2>
             <p>Enter your username below to log in</p>
 
-            <form className='flex flex-col gap-2 w-full p-10'>
+            <form onSubmit={handleSubmit(onSubmit)} className='flex flex-col gap-2 w-full p-10'>
               <motion.div 
                 className="mb-4"
                 initial={{ opacity: 0, y: 20 }}
@@ -47,12 +62,12 @@ export const Login = () => {
               >
                 <div>
                   <Input
-                  // {...register('title', { required: true })}
+                    {...register('username', { required: true })}
                     type='text'
                     placeholder="Username"
                     className="border border-gray-300 rounded-md p-2"
                   />
-                  {/* {errors?.title && <span className='text-red-500 text-sm'>El titulo es requerido</span>} */}
+                  {errors?.username && <span className='text-red-500 text-sm'>Username is requerid</span>}
                 </div>
               </motion.div>
 
@@ -64,12 +79,12 @@ export const Login = () => {
               >
                 <div>
                   <Input
-                  // {...register('title', { required: true })}
-                    type='text'
+                    {...register('password', { required: true })}
+                    type='password'
                     placeholder="Password"
                     className="border border-gray-300 rounded-md p-2"
                   />
-                  {/* {errors?.title && <span className='text-red-500 text-sm'>El titulo es requerido</span>} */}
+                  {errors?.password && <span className='text-red-500 text-sm'>Password is requerid</span>}
                 </div>
               </motion.div>
 
@@ -79,11 +94,8 @@ export const Login = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6 }}
               >
-                <Button 
-                  className="w-full" 
-                  type="submit"
-                >
-                Sign In
+                <Button className="w-full" type="submit">
+                  Sign In
                 </Button>
               </motion.div>
             </form>

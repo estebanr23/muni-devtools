@@ -1,17 +1,11 @@
 import { useState } from 'react'
+import { IResource } from '../interfaces'
 
 const params = new URLSearchParams({
   fields: 'image_x, icon_type, locale',
   key: import.meta.env.VITE_LINK_PREVIEW_API_KEY
 })
 
-interface IResource {
-  title: string
-  description: string
-  image: string
-  url: string
-  error?: string
-}
 
 // const defaultResource: IResource = {
 //   title: 'Docker Hub',
@@ -77,6 +71,7 @@ export const useLinkPreview = () => {
     error,
     resource,
     isLoading,
-    fetchData 
+    fetchData ,
+    resetInput
   }
 }
