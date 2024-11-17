@@ -2,6 +2,7 @@ import * as React from 'react'
 import { Link } from 'react-router-dom'
 import { cn } from '@/lib/utils'
 import { Icons } from '@/components/icons'
+import { components } from '@/app/constants'
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -11,7 +12,7 @@ import {
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
 } from '@/components/ui/navigation-menu'
-import { components } from '@/app/constants'
+
 
 export const Navbar = () => {
   return (
@@ -25,11 +26,12 @@ export const Navbar = () => {
                 <NavigationMenuLink asChild>
                   <a
                     className="flex h-full w-full select-none flex-col justify-end rounded-md bg-gradient-to-b from-muted/50 to-muted p-6 no-underline outline-none focus:shadow-md"
-                    href="/"
+                    href="https://github.com/sfvc"
+                    target='_blank'
                   >
-                    <Icons.logo />
+                    <Icons.GitHub />
                     <div className="mb-2 mt-4 text-lg font-medium">
-                        shadcn/ui
+                        GitHub SFVC
                     </div>
                     <p className="text-sm leading-tight text-muted-foreground">
                         Beautifully designed components built with Radix UI and
@@ -38,20 +40,21 @@ export const Navbar = () => {
                   </a>
                 </NavigationMenuLink>
               </li>
-              <ListItem href="/docs" title="Introduction">
+              <ListItem href="https://taiga.cc.gob.ar/discover" title="Taiga" target='_blank'>
                   Re-usable components built using Radix UI and Tailwind CSS.
               </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
+              <ListItem href="https://reportes.cc.gob.ar/" title="Reports" target='_blank'>
                   How to install dependencies and structure your app.
               </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
+              <ListItem href="https://git.cc.gob.ar/" title="Gitea" target='_blank'>
                   Styles for headings, paragraphs, lists...etc
               </ListItem>
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
+
+        {/* <NavigationMenuItem>
+          <NavigationMenuTrigger>Categories</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[400px] gap-3 p-4 md:w-[500px] md:grid-cols-2 lg:w-[600px] ">
               {components.map((component) => (
@@ -65,11 +68,17 @@ export const Navbar = () => {
               ))}
             </ul>
           </NavigationMenuContent>
-        </NavigationMenuItem>
+        </NavigationMenuItem> */}
+
         <NavigationMenuItem>
           <Link to='/blog'>
             <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                Documentation
+                Blog
+            </NavigationMenuLink>
+          </Link>
+          <Link to='/favorites'>
+            <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+              Favorites
             </NavigationMenuLink>
           </Link>
         </NavigationMenuItem>

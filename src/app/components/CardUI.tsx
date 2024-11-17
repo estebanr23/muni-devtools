@@ -14,10 +14,11 @@ import { BtnCopy } from '@/app/components/BtnCopy'
   
 interface Props {
   card: ICard
-  onEdit: (card: ICard) => void
+  onEdit?: (card: ICard) => void
+  onDelete?: (card: ICard) => void
 }
 
-export const CardUI = ({ card, onEdit }: Props) => {
+export const CardUI = ({ card, onEdit, onDelete }: Props) => {
   return (
     <Card className='h-full hover:scale-105 transition hover:shadow-lg hover:cursor-pointer relative'>
       <BtnCopy value={card.url}/>
@@ -43,18 +44,27 @@ export const CardUI = ({ card, onEdit }: Props) => {
         </Button>
 
         <div className='flex justify-end gap-x-2'>
-          <Button 
-            type="button" 
-            className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
-            onClick={() => onEdit(card)}
-          >
-            <Pencil className='text-slate-900 dark:text-primary'/>
-          </Button>
-          <Button 
-            type="button" 
-            className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'>
-            <Trash className='text-red-500'/>
-          </Button>
+          {
+            onEdit &&
+            <Button 
+              type="button" 
+              className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
+              onClick={() => onEdit(card)}
+            >
+              <Pencil className='text-slate-900 dark:text-primary'/>
+            </Button>
+          }
+
+          {
+            onDelete &&
+            <Button 
+              type="button" 
+              className='border shadow-sm bg-transparent hover:bg-transparent hover:border-slate-300 hover:scale-90 dark:text-input rounded-md size-10'
+              onClick={() => onDelete(card)}
+            >
+              <Trash className='text-red-500'/>
+            </Button>
+          }
         </div>
       </CardFooter>
     </Card>

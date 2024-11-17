@@ -1,6 +1,6 @@
 import { Navigate } from 'react-router-dom'
 import { Layout } from '@/layout/Layout'
-import { Blog, Error404, Home } from '@/app/pages'
+import { Blog, Error404, Favorites, Home, User } from '@/app/pages'
 
 export const PrivateRoute = [
   {
@@ -20,6 +20,16 @@ export const PrivateRoute = [
       {
         path: '/blog',
         element: <Blog />
+      },
+
+      {
+        path: '/favorites',
+        element: <Favorites />
+      },
+
+      {
+        path: '/users',
+        element: <User />
       },
 
       {

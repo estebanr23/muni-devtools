@@ -21,7 +21,7 @@ export const BtnCopy = ({ value }: Props) => {
     
     setTimeout(() => {
       setIsCopy(false)
-    }, 2000)
+    }, 1000)
   }
 
   return (
@@ -29,7 +29,7 @@ export const BtnCopy = ({ value }: Props) => {
       <Tooltip open={isCopy}>
         <TooltipTrigger className='absolute right-2 top-2'>
           <Button
-            className={`border p-4 shadow-sm ${ isCopy ? 'focus:text-green-300 focus:bg-green-600 focus:border-green-600/20' : 'border-white/20 hover:bg-white/20' }`} 
+            className={`border p-4 shadow-sm text-gray-300 hover:text-gray-200 ${ isCopy ? 'focus:text-gray-300 focus:bg-green-600 focus:border-green-600/20' : 'border-white/20 hover:bg-white/20' }`} 
             variant="ghost" 
             size="icon"
             onClick={copyUrl}
@@ -38,7 +38,7 @@ export const BtnCopy = ({ value }: Props) => {
           </Button>
         </TooltipTrigger>
 
-        <TooltipContent className='flex gap-1 items-center text-green-300 bg-green-600'>
+        <TooltipContent className='flex gap-1 items-center text-gray-300 bg-green-600'>
           <Check className='w-4' /> Copiado
         </TooltipContent>
       </Tooltip>

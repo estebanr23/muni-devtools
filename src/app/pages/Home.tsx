@@ -7,25 +7,36 @@ import { ICard } from '../interfaces'
 import { cards } from '../constants'
 import { Resource } from '../components/resources/Resource'
 import { Input } from '@/components/ui/input'
+import { AlertDialogUI } from '../components/AlertDialogUI'
 
 export const Home = () => {
   const [isOpen, setIsOpen] = useState<boolean>(false)
+  const [isOpenDelete, setIsOpenDelete] = useState<boolean>(false)
   const [activeCard, setActiveCard] = useState<ICard | null>(null)
 
-  const handleCreate = () => {
-    setActiveCard(null)
+  const handleResource = (card?: ICard) => {
+    if(card) setActiveCard(card)
     setIsOpen(true)
   }
 
-  const handleEdit = (card: ICard) => {
+  const handleDelete = (card: ICard) => {
     setActiveCard(card)
-    setIsOpen(true)
+    setIsOpenDelete(true)
+  }
+
+  const removeResource = () => {
+    console.log('remove')
   }
 
   return (
-    <div>
+    <>
       <section className='mb-8'>
-        <h1 className='text-center font-semibold text-3xl sm:text-4xl'>Muni DevTools</h1>
+        <h1 
+          className="text-center text-8xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-gray-400
+          via-blue-500 to-gray-900"
+        >
+          Muni Devtools
+        </h1>
 
         <div className='flex flex-col md:flex-row items-center md:justify-center gap-4 mt-6'>
           <div className='flex-1 w-full md:max-w-2xl relative'>
@@ -51,7 +62,7 @@ export const Home = () => {
           <Button 
             className='w-full md:w-auto rounded-xl h-12' 
             variant="outline" 
-            onClick={handleCreate}
+            onClick={() => handleResource()}
           >
             <Plus /> Agregar
           </Button>
@@ -64,20 +75,30 @@ export const Home = () => {
           cards.map((card: ICard) => (
             <CardUI key={card.id}
               card={card}
-              onEdit={() => handleEdit(card)}
+              onEdit={() => handleResource(card)}
+              onDelete={() => handleDelete(card)}
             />
           ))
         }
       </section>
 
-      {/* Modal para crear o editar */}
+      {/* Modal para crear o editar recurso */}
       <ModalUI
         isOpen={isOpen} 
         setIsOpen={setIsOpen}
-        title={activeCard ? 'Editar recurso' : 'Agregar recurso'} 
+        title={activeCard ? 'Edit resource' : 'Add resource'} 
       >
         <Resource />
       </ModalUI>
-    </div>
+
+      {/* Modal para eliminar recurso */}
+      <AlertDialogUI
+        isOpen={isOpenDelete} 
+        setIsOpen={setIsOpenDelete}
+        title='Delete resource' 
+        description='Do you want to delete the resource?'
+        onAction={removeResource}
+      />
+    </>
   )
 }

@@ -1,3 +1,5 @@
 export { Home } from './Home'
 export { Blog } from './Blog'
+export { Favorites } from './Favorites'
+export { User } from './User'
 export { Error404 } from './Error404'
