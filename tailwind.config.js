@@ -52,8 +52,12 @@ export default {
   				'3': 'hsl(var(--chart-3))',
   				'4': 'hsl(var(--chart-4))',
   				'5': 'hsl(var(--chart-5))'
-  			}
-  		}
+  			},
+  		},
+		backgroundImage: {
+			app: 'linear-gradient(to bottom right, #1A202C, #2D3748, #718096)', // Modo claro
+			'app-dark': 'linear-gradient(to bottom right, #111827, #000000)', // Modo oscuro
+		},
   	}
   },
   plugins: [require("tailwindcss-animate")],

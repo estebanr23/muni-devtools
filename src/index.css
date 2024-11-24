@@ -63,4 +63,8 @@
   body {
     @apply bg-background text-foreground;
   }
+
+  .app-container {
+    @apply bg-app dark:bg-app-dark;
+  }
 }

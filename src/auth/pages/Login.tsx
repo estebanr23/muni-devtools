@@ -2,11 +2,12 @@ import { motion } from 'framer-motion'
 import { Input } from '@/components/ui/input'
 import { Button } from '@/components/ui/button'
 import logoCapitalDark from '@/assets/images/logo-capital-dark.png'
-import logoCapitalLight from '@/assets/images/logo-capital-light.png'
 import logoModo from '@/assets/images/logo-nodo.png'
 import { ReactTyped } from 'react-typed'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { useTheme } from '@/components/theme-provider'
+import { useContext } from 'react'
+import { AuthContext } from '@/context/auth/AuthContext'
 
 interface LoginForm {
   username: string
@@ -15,18 +16,21 @@ interface LoginForm {
 
 export const Login = () => {
   const { theme } = useTheme()
+  const { loginUser } = useContext(AuthContext)
+
   const {
     register, 
-    formState: { errors }, 
+    formState: { isSubmitting, errors }, 
     handleSubmit 
   } = useForm<LoginForm>()
 
-  const onSubmit: SubmitHandler<LoginForm> = (data: LoginForm) => {
-    console.log(data)
+  const onSubmit: SubmitHandler<LoginForm> = async (form: LoginForm) => {
+    console.log(form)
+    await loginUser(form)
   }
 
   return (
-    <div className="bg-gradient-to-br from-gray-900 dark:to-black to-slate-500">
+    <div className="app-container">
       <div className='flex flex-col container mx-auto min-h-screen px-8 md:px-20'>
 
         <div className='w-full py-4'>
@@ -98,7 +102,11 @@ export const Login = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.6 }}
                 >
-                  <Button className="w-full rounded-lg h-10 dark:bg-gray-200 bg-gray-800/90 hover:bg-gray-800" type="submit">
+                  <Button 
+                    type="submit"
+                    className="w-full rounded-lg h-10 dark:bg-gray-200 bg-gray-800/90 hover:bg-gray-800" 
+                    disabled={isSubmitting}
+                  >
                     Sign In
                   </Button>
                 </motion.div>
